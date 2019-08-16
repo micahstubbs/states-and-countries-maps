@@ -129,6 +129,7 @@ function selected() {
 }
 
 function rotateMap(endX) {
+  console.log('rotateMap was called', endX)
   projection.rotate([rotated + ((endX - initX) * 360) / (s * width), 0, 0])
   g.selectAll('path') //  re-project path data
     .attr('d', path)
@@ -137,16 +138,16 @@ function rotateMap(endX) {
 function zoomed() {
   console.log('d3.event', d3.event)
   s = d3.event.transform.k
-  // const deltaX = d3.event.sourceEvent.deltaX
-  // const deltaY = d3.event.sourceEvent.deltaY
+  const t = [d3.event.transform.x, d3.event.transform.y] 
+  console.log('s', s)
+
   // s = d3.event.scale
-  // const h = 0
+  const h = 0
 
-  // t[0] = Math.min((width / height) * (s - 1), Math.max(width * (1 - s), t[0]))
+  t[0] = Math.min((width / height) * (s - 1), Math.max(width * (1 - s), t[0]))
 
-  // t[1] = Math.min(h * (s - 1) + h * s, Math.max(height * (1 - s) - h * s, t[1]))
+  t[1] = Math.min(h * (s - 1) + h * s, Math.max(height * (1 - s) - h * s, t[1]))
 
-  // zoom.translateBy(d3.event.sourceEvent.srcElement, deltaX, deltaY)
   if (s === 1 && mouseClicked) {
     rotateMap(d3.mouse(this)[0])
 
