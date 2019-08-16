@@ -1,5 +1,5 @@
 const width = 960
-let rotated = -11
+let rotated = -11 // center on Europe
 const height = 500
 
 // countries which have states, needed to toggle visibility
@@ -20,7 +20,7 @@ const projection = d3
   .geoRobinson()
   .scale(153)
   .translate([width / 2, height / 2])
-  .rotate([rotated, 0, 0]) // center on USA because 'murica
+  .rotate([rotated, 0, 0]) 
 
 const svg = d3
   .select('body')
