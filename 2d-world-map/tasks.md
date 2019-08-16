@@ -1,6 +1,7 @@
 # tasks
 
 - convert projection to Robinson
+- click ocean de-selects country
 
 # make iterations
 
