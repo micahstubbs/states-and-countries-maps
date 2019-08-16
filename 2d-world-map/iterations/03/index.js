@@ -16,7 +16,8 @@ let s = 1
 let mouseClicked = false
 let currentSelection
 
-const projection = d3.geoMercator()
+const projection = d3
+  .geoMercator()
   .scale(153)
   .translate([width / 2, height / 1.5])
   .rotate([rotated, 0, 0]) // center on USA because 'murica
@@ -72,9 +73,11 @@ const tooltip = d3
 var g = svg.append('g')
 
 // get json data and draw it
-d3.json('./combined-countries-us-ca-states.json', (error, world) => {
+d3.json('./combined-countries-us-ca-states.json', draw)
+ 
+function draw(error, world) {
   if (error) return console.error(error)
-  console.log('world', world)  
+  console.log('world', world)
   // countries
   g.append('g')
     .attr('class', 'boundary')
@@ -111,7 +114,7 @@ d3.json('./combined-countries-us-ca-states.json', (error, world) => {
     .attr('d', path)
 
   states = d3.selectAll('.state')
-})
+}
 
 function showTooltip(d) {
   label = d.properties.name
@@ -133,7 +136,6 @@ function zoomed() {
   // const deltaY = d3.event.sourceEvent.deltaY
   // s = d3.event.scale
   // const h = 0
-
 
   // t[0] = Math.min((width / height) * (s - 1), Math.max(width * (1 - s), t[0]))
 
