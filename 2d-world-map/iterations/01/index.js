@@ -113,7 +113,7 @@ function showTooltip(d) {
     .classed('hidden', false)
     .attr(
       'style',
-      'left:' + (mouse[0] + offsetL) + 'px;top:' + (mouse[1] + offsetT) + 'px'
+      `left:${mouse[0] + offsetL}px;top:${mouse[1] + offsetT}px`
     )
     .html(label)
 }
@@ -138,7 +138,7 @@ function zoomed() {
     return
   }
 
-  g.attr('transform', 'translate(' + t + ')scale(' + s + ')')
+  g.attr('transform', `translate(${t})scale(${s})`)
 
   //adjust the stroke width based on zoom level
   d3.selectAll('.boundary').style('stroke-width', 1 / s)
