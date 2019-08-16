@@ -4,10 +4,9 @@ const height = 502;
 
 //countries which have states, needed to toggle visibility
 //for USA/ etc. either show countries or states, not both
-var usa;
-
-var canada;
-var states //track states
+let usa;
+let canada;
+let states //track states
 //track where mouse was clicked
 var initX
 //track scale only rotate when s === 1
