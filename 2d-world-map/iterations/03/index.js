@@ -73,10 +73,13 @@ const tooltip = d3
 var g = svg.append('g')
 
 // get json data and draw it
-d3.json('./combined-countries-us-ca-states.json', draw)
- 
-function draw(error, world) {
-  if (error) return console.error(error)
+d3.json('./combined-countries-us-ca-states.json')
+  .then(response => draw(response))
+  .catch(error => {
+    console.error(error)
+  })
+
+function draw(world) {
   console.log('world', world)
   // countries
   g.append('g')
