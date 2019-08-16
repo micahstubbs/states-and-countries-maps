@@ -129,17 +129,17 @@ function selected() {
 }
 
 function rotateMap(endX) {
-  console.log('rotateMap was called', endX)
+  // console.log('rotateMap was called', endX)
   projection.rotate([rotated + ((endX - initX) * 360) / (s * width), 0, 0])
   g.selectAll('path') //  re-project path data
     .attr('d', path)
 }
 
 function zoomed() {
-  console.log('d3.event', d3.event)
+  // console.log('d3.event', d3.event)
   s = d3.event.transform.k
-  const t = [d3.event.transform.x, d3.event.transform.y] 
-  console.log('s', s)
+  const t = [d3.event.transform.x, d3.event.transform.y]
+  // console.log('s', s)
 
   // s = d3.event.scale
   const h = 0
@@ -150,7 +150,6 @@ function zoomed() {
 
   if (s === 1 && mouseClicked) {
     rotateMap(d3.mouse(this)[0])
-
     //  re-select any elements that were selected before dragging
     if (currentSelection) {
       currentSelection.classed('selected', true)
@@ -158,8 +157,8 @@ function zoomed() {
     return
   }
 
-  // g.attr('transform', `translate(${t})scale(${s})`)
-  g.attr('transform', d3.event.transform)
+  g.attr('transform', `translate(${t})scale(${s})`)
+  // g.attr('transform', d3.event.transform)
 
   // adjust the stroke width based on zoom level
   d3.selectAll('.boundary').style('stroke-width', 1 / s)

@@ -1,3 +1,5 @@
+WIP - need to fix panning after zoom
+
 this iteration converts the example to the latest version of d3js, [v5.9.7](https://cdnjs.com/libraries/d3/5.9.7) at this writing.
 
 ah, it looks like piwodlaiwo had a similar idea, and made some progress on this https://bl.ocks.org/piwodlaiwo/73f7a0e28c53d26c04f30a754de49085
