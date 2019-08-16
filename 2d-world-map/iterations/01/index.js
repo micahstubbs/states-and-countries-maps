@@ -1,6 +1,6 @@
 const width = 962;
 let rotated = 90;
-var height = 502;
+const height = 502;
 
 //countries which have states, needed to toggle visibility
 //for USA/ etc. either show countries or states, not both
