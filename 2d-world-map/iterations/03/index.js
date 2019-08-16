@@ -128,15 +128,18 @@ function selected() {
 }
 
 function zoomed() {
-  const t = d3.event.translate
-  s = d3.event.scale
+  console.log('d3.event', d3.event)
+  const deltaX = d3.event.sourceEvent.deltaX
+  const deltaY = d3.event.sourceEvent.deltaY
+  // s = d3.event.scale
   const h = 0
 
-  t[0] = Math.min((width / height) * (s - 1), Math.max(width * (1 - s), t[0]))
 
-  t[1] = Math.min(h * (s - 1) + h * s, Math.max(height * (1 - s) - h * s, t[1]))
+  // t[0] = Math.min((width / height) * (s - 1), Math.max(width * (1 - s), t[0]))
 
-  zoom.translate(t)
+  // t[1] = Math.min(h * (s - 1) + h * s, Math.max(height * (1 - s) - h * s, t[1]))
+
+  zoom.translateBy(d3.event.target, deltaX, deltaY)
   if (s === 1 && mouseClicked) {
     rotateMap(d3.mouse(this)[0])
 
