@@ -1,3 +1,7 @@
+this iteration adds a click event to the ocean that de-selects the country, if a country is selected.
+
+---
+
 this iteration makes the code familiar to me and nice to work with
 
 ---
