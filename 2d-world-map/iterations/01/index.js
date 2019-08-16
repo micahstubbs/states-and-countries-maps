@@ -7,11 +7,13 @@ const height = 502;
 let usa;
 let canada;
 let states //track states
+
 //track where mouse was clicked
-var initX
+let initX
+
 //track scale only rotate when s === 1
-var s = 1
-var mouseClicked = false
+let s = 1
+let mouseClicked = false
 
 var projection = d3.geo
   .mercator()
