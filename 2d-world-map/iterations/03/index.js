@@ -53,11 +53,6 @@ const svg = d3
   })
   .call(zoom)
 
-function rotateMap(endX) {
-  projection.rotate([rotated + ((endX - initX) * 360) / (s * width), 0, 0])
-  g.selectAll('path') //  re-project path data
-    .attr('d', path)
-}
 // for tooltip
 const offsetL = document.getElementById('map').offsetLeft + 10
 const offsetT = document.getElementById('map').offsetTop + 10
@@ -133,8 +128,15 @@ function selected() {
   currentSelection.classed('selected', true)
 }
 
+function rotateMap(endX) {
+  projection.rotate([rotated + ((endX - initX) * 360) / (s * width), 0, 0])
+  g.selectAll('path') //  re-project path data
+    .attr('d', path)
+}
+
 function zoomed() {
   console.log('d3.event', d3.event)
+  s = d3.event.transform.k
   // const deltaX = d3.event.sourceEvent.deltaX
   // const deltaY = d3.event.sourceEvent.deltaY
   // s = d3.event.scale
