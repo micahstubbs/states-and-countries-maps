@@ -18,8 +18,8 @@ let currentSelection
 
 const projection = d3
   .geoRobinson()
-  .scale(153)
-  .translate([width / 2, height / 2])
+  .scale(160)
+  .translate([width / 2, height / 2 + 36])
   .rotate([rotated, 0, 0]) 
 
 const svg = d3
