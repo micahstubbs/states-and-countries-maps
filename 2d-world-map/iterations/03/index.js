@@ -129,17 +129,17 @@ function selected() {
 
 function zoomed() {
   console.log('d3.event', d3.event)
-  const deltaX = d3.event.sourceEvent.deltaX
-  const deltaY = d3.event.sourceEvent.deltaY
+  // const deltaX = d3.event.sourceEvent.deltaX
+  // const deltaY = d3.event.sourceEvent.deltaY
   // s = d3.event.scale
-  const h = 0
+  // const h = 0
 
 
   // t[0] = Math.min((width / height) * (s - 1), Math.max(width * (1 - s), t[0]))
 
   // t[1] = Math.min(h * (s - 1) + h * s, Math.max(height * (1 - s) - h * s, t[1]))
 
-  zoom.translateBy(d3.event.target, deltaX, deltaY)
+  // zoom.translateBy(d3.event.sourceEvent.srcElement, deltaX, deltaY)
   if (s === 1 && mouseClicked) {
     rotateMap(d3.mouse(this)[0])
 
@@ -150,7 +150,8 @@ function zoomed() {
     return
   }
 
-  g.attr('transform', `translate(${t})scale(${s})`)
+  // g.attr('transform', `translate(${t})scale(${s})`)
+  g.attr('transform', d3.event.transform)
 
   // adjust the stroke width based on zoom level
   d3.selectAll('.boundary').style('stroke-width', 1 / s)
