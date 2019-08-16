@@ -61,7 +61,7 @@ function rotateMap(endX) {
 const offsetL = document.getElementById('map').offsetLeft + 10
 const offsetT = document.getElementById('map').offsetTop + 10
 
-var path = d3.geoPath().projection(projection)
+const path = d3.geoPath().projection(projection)
 
 const tooltip = d3
   .select('#map')
@@ -72,7 +72,7 @@ const tooltip = d3
 var g = svg.append('g')
 
 //det json data and draw it
-d3.json('combined-countries-us-ca-states.json', (error, world) => {
+d3.json('./combined-countries-us-ca-states.json', (error, world) => {
   if (error) return console.error(error)
   console.log('world', world)  
   //countries
