@@ -2,16 +2,16 @@ const width = 962
 let rotated = 90
 const height = 502
 
-//countries which have states, needed to toggle visibility
-//for USA/ etc. either show countries or states, not both
+// countries which have states, needed to toggle visibility
+// for USA/ etc. either show countries or states, not both
 let usa
 let canada
-let states //track states
+let states // track states
 
-//track where mouse was clicked
+// track where mouse was clicked
 let initX
 
-//track scale only rotate when s === 1
+// track scale only rotate when s === 1
 let s = 1
 let mouseClicked = false
 let currentSelection
@@ -19,7 +19,7 @@ let currentSelection
 const projection = d3.geoMercator()
   .scale(153)
   .translate([width / 2, height / 1.5])
-  .rotate([rotated, 0, 0]) //center on USA because 'murica
+  .rotate([rotated, 0, 0]) // center on USA because 'murica
 
 const zoom = d3
   .zoom()
@@ -31,18 +31,18 @@ const svg = d3
   .append('svg')
   .attr('width', width)
   .attr('height', height)
-  //track where user clicked down
+  // track where user clicked down
   .on('mousedown', function() {
     d3.event.preventDefault()
-    //only if scale === 1
+    // only if scale === 1
     if (s !== 1) return
     initX = d3.mouse(this)[0]
     mouseClicked = true
 
-    // cache the current selection, if any
+    //  cache the current selection, if any
     currentSelection = d3.select('.selected')
 
-    // de-select any elements that were selected before
+    //  de-select any elements that were selected before
     d3.selectAll('.selected').classed('selected', false)
   })
   .on('mouseup', function() {
@@ -54,10 +54,10 @@ const svg = d3
 
 function rotateMap(endX) {
   projection.rotate([rotated + ((endX - initX) * 360) / (s * width), 0, 0])
-  g.selectAll('path') // re-project path data
+  g.selectAll('path') //  re-project path data
     .attr('d', path)
 }
-//for tooltip
+// for tooltip
 const offsetL = document.getElementById('map').offsetLeft + 10
 const offsetT = document.getElementById('map').offsetTop + 10
 
@@ -68,14 +68,14 @@ const tooltip = d3
   .append('div')
   .attr('class', 'tooltip hidden')
 
-//need this for correct panning
+// need this for correct panning
 var g = svg.append('g')
 
-//det json data and draw it
+// get json data and draw it
 d3.json('./combined-countries-us-ca-states.json', (error, world) => {
   if (error) return console.error(error)
   console.log('world', world)  
-  //countries
+  // countries
   g.append('g')
     .attr('class', 'boundary')
     .selectAll('boundary')
@@ -94,7 +94,7 @@ d3.json('./combined-countries-us-ca-states.json', (error, world) => {
   usa = d3.select('#USA')
   canada = d3.select('#CAN')
 
-  //states
+  // states
   g.append('g')
     .attr('class', 'boundary state hidden')
     .selectAll('boundary')
@@ -140,7 +140,7 @@ function zoomed() {
   if (s === 1 && mouseClicked) {
     rotateMap(d3.mouse(this)[0])
 
-    // re-select any elements that were selected before dragging
+    //  re-select any elements that were selected before dragging
     if (currentSelection) {
       currentSelection.classed('selected', true)
     }
@@ -149,10 +149,10 @@ function zoomed() {
 
   g.attr('transform', `translate(${t})scale(${s})`)
 
-  //adjust the stroke width based on zoom level
+  // adjust the stroke width based on zoom level
   d3.selectAll('.boundary').style('stroke-width', 1 / s)
 
-  //toggle state/USA visability
+  // toggle state/USA visability
   if (s > 1.5) {
     states.classed('hidden', false)
     usa.classed('hidden', true)
