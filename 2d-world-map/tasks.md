@@ -4,6 +4,7 @@ do these and use them in all future iterations:
 
 - convert projection to Robinson
 - click ocean de-selects country
+- when state is selected, zooming out should persist selection to country
 
 # make iterations
 
