@@ -1,5 +1,5 @@
 const width = 962;
-var rotated = 90;
+let rotated = 90;
 var height = 502;
 
 //countries which have states, needed to toggle visibility
