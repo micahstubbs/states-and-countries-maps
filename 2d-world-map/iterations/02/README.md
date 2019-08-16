@@ -1,4 +1,4 @@
-this iteration adds a click event to the ocean that de-selects the country, if a country is selected.
+this iteration adds a click event to the ocean that de-selects the country, if a country is selected.  Selections also now persist after dragging and zooming (though not when zooming from state level to country level, yet).
 
 ---
 

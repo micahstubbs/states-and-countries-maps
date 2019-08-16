@@ -1,11 +1,11 @@
-const width = 962;
-let rotated = 90;
-const height = 502;
+const width = 962
+let rotated = 90
+const height = 502
 
 //countries which have states, needed to toggle visibility
 //for USA/ etc. either show countries or states, not both
-let usa;
-let canada;
+let usa
+let canada
 let states //track states
 
 //track where mouse was clicked
@@ -14,6 +14,7 @@ let initX
 //track scale only rotate when s === 1
 let s = 1
 let mouseClicked = false
+let currentSelection
 
 const projection = d3.geo
   .mercator()
@@ -31,7 +32,6 @@ const svg = d3
   .append('svg')
   .attr('width', width)
   .attr('height', height)
-  
   //track where user clicked down
   .on('mousedown', function() {
     d3.event.preventDefault()
@@ -39,6 +39,12 @@ const svg = d3
     if (s !== 1) return
     initX = d3.mouse(this)[0]
     mouseClicked = true
+
+    // cache the current selection, if any
+    currentSelection = d3.select('.selected')
+
+    // de-select any elements that were selected before
+    d3.selectAll('.selected').classed('selected', false)
   })
   .on('mouseup', function() {
     if (s !== 1) return
@@ -53,15 +59,15 @@ function rotateMap(endX) {
     .attr('d', path)
 }
 //for tooltip
-const offsetL = document.getElementById('map').offsetLeft + 10;
-const offsetT = document.getElementById('map').offsetTop + 10;
+const offsetL = document.getElementById('map').offsetLeft + 10
+const offsetT = document.getElementById('map').offsetTop + 10
 
 var path = d3.geo.path().projection(projection)
 
 const tooltip = d3
   .select('#map')
   .append('div')
-  .attr('class', 'tooltip hidden');
+  .attr('class', 'tooltip hidden')
 
 //need this for correct panning
 var g = svg.append('g')
@@ -110,25 +116,22 @@ d3.json('combined-countries-us-ca-states.json', (error, world) => {
 
 function showTooltip(d) {
   label = d.properties.name
-  const mouse = d3.mouse(svg.node()).map(d => parseInt(d));
+  const mouse = d3.mouse(svg.node()).map(d => parseInt(d))
   tooltip
     .classed('hidden', false)
-    .attr(
-      'style',
-      `left:${mouse[0] + offsetL}px;top:${mouse[1] + offsetT}px`
-    )
+    .attr('style', `left:${mouse[0] + offsetL}px;top:${mouse[1] + offsetT}px`)
     .html(label)
 }
 
 function selected() {
-  d3.select('.selected').classed('selected', false)
-  d3.select(this).classed('selected', true)
+  currentSelection = d3.select(this)
+  currentSelection.classed('selected', true)
 }
 
 function zoomed() {
-  const t = d3.event.translate;
+  const t = d3.event.translate
   s = d3.event.scale
-  const h = 0;
+  const h = 0
 
   t[0] = Math.min((width / height) * (s - 1), Math.max(width * (1 - s), t[0]))
 
@@ -137,6 +140,11 @@ function zoomed() {
   zoom.translate(t)
   if (s === 1 && mouseClicked) {
     rotateMap(d3.mouse(this)[0])
+
+    // re-select any elements that were selected before dragging
+    if (currentSelection) {
+      currentSelection.classed('selected', true)
+    }
     return
   }
 
