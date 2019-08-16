@@ -53,15 +53,15 @@ function rotateMap(endX) {
     .attr('d', path)
 }
 //for tooltip
-var offsetL = document.getElementById('map').offsetLeft + 10
-var offsetT = document.getElementById('map').offsetTop + 10
+const offsetL = document.getElementById('map').offsetLeft + 10;
+const offsetT = document.getElementById('map').offsetTop + 10;
 
 var path = d3.geo.path().projection(projection)
 
-var tooltip = d3
+const tooltip = d3
   .select('#map')
   .append('div')
-  .attr('class', 'tooltip hidden')
+  .attr('class', 'tooltip hidden');
 
 //need this for correct panning
 var g = svg.append('g')
@@ -110,7 +110,7 @@ d3.json('combined-countries-us-ca-states.json', (error, world) => {
 
 function showTooltip(d) {
   label = d.properties.name
-  var mouse = d3.mouse(svg.node()).map(d => parseInt(d))
+  const mouse = d3.mouse(svg.node()).map(d => parseInt(d));
   tooltip
     .classed('hidden', false)
     .attr(
@@ -126,9 +126,9 @@ function selected() {
 }
 
 function zoomed() {
-  var t = d3.event.translate
+  const t = d3.event.translate;
   s = d3.event.scale
-  var h = 0
+  const h = 0;
 
   t[0] = Math.min((width / height) * (s - 1), Math.max(width * (1 - s), t[0]))
 
