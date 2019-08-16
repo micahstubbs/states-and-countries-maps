@@ -15,22 +15,23 @@ let initX
 let s = 1
 let mouseClicked = false
 
-var projection = d3.geo
+const projection = d3.geo
   .mercator()
   .scale(153)
   .translate([width / 2, height / 1.5])
   .rotate([rotated, 0, 0]) //center on USA because 'murica
 
-var zoom = d3.behavior
+const zoom = d3.behavior
   .zoom()
   .scaleExtent([1, 20])
   .on('zoom', zoomed)
 
-var svg = d3
+const svg = d3
   .select('body')
   .append('svg')
   .attr('width', width)
   .attr('height', height)
+  
   //track where user clicked down
   .on('mousedown', function() {
     d3.event.preventDefault()
