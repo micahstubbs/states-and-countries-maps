@@ -1,0 +1,10 @@
+{
+  "name": "states-and-countries-maps",
+  "version": "1.0.0",
+  "description": "maps of states and countries presented together",
+  "main": "index.js",
+  "repository": "git@github.com:micahstubbs/states-and-countries-maps.git",
+  "author": "Micah Stubbs <micah.stubbs@gmail.com>",
+  "license": "Apache-2.0",
+  "private": false
+}
