@@ -1,10 +1,12 @@
-var width = 962,
-  rotated = 90,
-  height = 502
+var width = 962;
+var rotated = 90;
+var height = 502;
 
 //countries which have states, needed to toggle visibility
 //for USA/ etc. either show countries or states, not both
-var usa, canada
+var usa;
+
+var canada;
 var states //track states
 //track where mouse was clicked
 var initX
@@ -63,7 +65,7 @@ var tooltip = d3
 var g = svg.append('g')
 
 //det json data and draw it
-d3.json('combined-countries-us-ca-states.json', function(error, world) {
+d3.json('combined-countries-us-ca-states.json', (error, world) => {
   if (error) return console.error(error)
 
   //countries
@@ -73,15 +75,11 @@ d3.json('combined-countries-us-ca-states.json', function(error, world) {
     .data(topojson.feature(world, world.objects.countries).features)
     .enter()
     .append('path')
-    .attr('name', function(d) {
-      return d.properties.name
-    })
-    .attr('id', function(d) {
-      return d.id
-    })
+    .attr('name', d => d.properties.name)
+    .attr('id', d => d.id)
     .on('click', selected)
     .on('mousemove', showTooltip)
-    .on('mouseout', function(d, i) {
+    .on('mouseout', (d, i) => {
       tooltip.classed('hidden', true)
     })
     .attr('d', path)
@@ -96,15 +94,11 @@ d3.json('combined-countries-us-ca-states.json', function(error, world) {
     .data(topojson.feature(world, world.objects.states).features)
     .enter()
     .append('path')
-    .attr('name', function(d) {
-      return d.properties.name
-    })
-    .attr('id', function(d) {
-      return d.id
-    })
+    .attr('name', d => d.properties.name)
+    .attr('id', d => d.id)
     .on('click', selected)
     .on('mousemove', showTooltip)
-    .on('mouseout', function(d, i) {
+    .on('mouseout', (d, i) => {
       tooltip.classed('hidden', true)
     })
     .attr('d', path)
@@ -114,9 +108,7 @@ d3.json('combined-countries-us-ca-states.json', function(error, world) {
 
 function showTooltip(d) {
   label = d.properties.name
-  var mouse = d3.mouse(svg.node()).map(function(d) {
-    return parseInt(d)
-  })
+  var mouse = d3.mouse(svg.node()).map(d => parseInt(d))
   tooltip
     .classed('hidden', false)
     .attr(
