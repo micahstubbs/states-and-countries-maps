@@ -1,6 +1,6 @@
-const width = 962
+const width = 960
 let rotated = 90
-const height = 502
+const height = 500
 
 // countries which have states, needed to toggle visibility
 // for USA/ etc. either show countries or states, not both
@@ -19,7 +19,7 @@ let currentSelection
 const projection = d3
   .geoRobinson()
   .scale(153)
-  .translate([width / 2, height / 1.5])
+  .translate([width / 2, height / 2])
   .rotate([rotated, 0, 0]) // center on USA because 'murica
 
 const svg = d3
