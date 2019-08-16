@@ -9,4 +9,4 @@ lebab --replace index.js --transform obj-shorthand
 lebab --replace index.js --transform multi-var
 # unsafe
 # lebab --replace index.js --transform let
-# lebab --replace index.js --transform template
+lebab --replace index.js --transform template

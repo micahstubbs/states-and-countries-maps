@@ -1,4 +1,4 @@
-var width = 962;
+const width = 962;
 var rotated = 90;
 var height = 502;
 
